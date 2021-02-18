@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript">
+			function draw(img_src) {
+				var ctx = document.getElementById('avt1').getContext('2d');
+                ctx.mozImageSmoothingEnabled = false;
+				ctx.webkitImageSmoothingEnabled = false;
+				ctx.msImageSmoothingEnabled = false;
+				ctx.imageSmoothingEnabled = false;
+                var img = new Image();
+                img.onload = function(){
+                    ctx.drawImage(img,0,0,200,200);
+                };
+                img.src = 'avt/spring_festival.png';
+			}
+		</script>
+	</head>
+	<body onload="draw('')">
+		<canvas id="avt1" width="200px" height="200px"></canvas>
+	</body>
+</html>
