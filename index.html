@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
 		<title>Avatar Gallery</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 		<style type="text/css">
-			canvas {
-				width: 100%;
-				box-shadow: 5px 8px 5px grey;
+			img {
+				box-shadow: 8px 5px 5px grey;
 			}
 		</style>
 		<script type="text/javascript">
@@ -27,6 +27,19 @@
                 let img = new Image();
                 img.onload = function(){
                     ctx.drawImage(img, 0, 0, 500, 500);
+	                let canvas_cell = document.getElementById(canvas_id + "_cell");
+					let canvas = document.getElementById(canvas_id);
+					let big_img = new Image();
+					big_img.src = canvas.toDataURL("image/png");
+					canvas_cell.removeChild(canvas_cell.lastChild);
+					big_img.classList.add("responsive-img");
+					canvas_cell.appendChild(big_img);
+					canvas_cell.addEventListener("mouseover", function(){
+						big_img.classList.add("circle");
+					});
+					canvas_cell.addEventListener("mouseout", function(){
+						big_img.classList.remove("circle");
+					});
                 };
                 img.src = img_src;
 			}
@@ -41,14 +54,7 @@
 				let cont = document.getElementById("container");
 				cont.insertAdjacentHTML("beforeend", html_code);
 				draw(file_id, "avt/" + file_id + ".png");
-				let canvas_cell = document.getElementById(file_id + "_cell");
-				let canvas = document.getElementById(file_id);
-				canvas_cell.addEventListener("mouseover", function(){
-					canvas.classList.add("circle");
-				});
-				canvas_cell.addEventListener("mouseout", function(){
-					canvas.classList.remove("circle");
-				});
+
 			}
 
 			function init() {
