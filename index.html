@@ -34,13 +34,21 @@
 			function add_item(file_id, title) {
 				let html_code = "<div class='row'>\
 				<div class='col s2 m3 l4'></div>\
-				<div class='col s8 m6 l4'><canvas id='" + file_id + "' class='responsive-img' width='500px' height='500px'></canvas></div>\
+				<div class='col s8 m6 l4' id='" + file_id + "_cell'><canvas id='" + file_id + "' class='responsive-img' width='500px' height='500px'></canvas></div>\
 				<div class='col s2 m3 l4'></div>\
 				<div class='col s12 center-align'>" + title + "</div>\
 				</div>";
 				let cont = document.getElementById("container");
 				cont.insertAdjacentHTML("beforeend", html_code);
 				draw(file_id, "avt/" + file_id + ".png");
+				let canvas_cell = document.getElementById(file_id + "_cell");
+				let canvas = document.getElementById(file_id);
+				canvas_cell.addEventListener("mouseover", function(){
+					canvas.classList.add("circle");
+				});
+				canvas_cell.addEventListener("mouseout", function(){
+					canvas.classList.remove("circle");
+				});
 			}
 
 			function init() {
