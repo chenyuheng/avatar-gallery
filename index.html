@@ -1,85 +1,85 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Avatar Gallery</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-		<style type="text/css">
-			img {
-				box-shadow: 8px 5px 5px grey;
-			}
-		</style>
-		<script type="text/javascript">
-			avts = [
-				["white-cloud", "白云"],
-				["dawn", "黎明"],
-				["cloudy", "阴天"],
-				["grass_slope", "草坡"],
-				["spring_festival", "春节"],
-				["xmas", "圣诞节"],
-				["purple_pink", "紫粉色"],
-				["wathet_yellow", "淡蓝黄色"],
-			];
+    <head>
+        <meta charset="utf-8">
+        <title>Avatar Gallery</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <style type="text/css">
+            img {
+                box-shadow: 8px 5px 5px grey;
+            }
+        </style>
+        <script type="text/javascript">
+            avts = [
+                ["white-cloud", "白云"],
+                ["dawn", "黎明"],
+                ["cloudy", "阴天"],
+                ["grass_slope", "草坡"],
+                ["spring_festival", "春节"],
+                ["xmas", "圣诞节"],
+                ["purple_pink", "紫粉色"],
+                ["wathet_yellow", "淡蓝黄色"],
+            ];
 
-			function draw(canvas_id, img_src) {
-				let ctx = document.getElementById(canvas_id).getContext('2d');
+            function draw(canvas_id, img_src) {
+                let ctx = document.getElementById(canvas_id).getContext('2d');
                 ctx.mozImageSmoothingEnabled = false;
-				ctx.webkitImageSmoothingEnabled = false;
-				ctx.msImageSmoothingEnabled = false;
-				ctx.imageSmoothingEnabled = false;
+                ctx.webkitImageSmoothingEnabled = false;
+                ctx.msImageSmoothingEnabled = false;
+                tctx.imageSmoothingEnabled = false;
                 let img = new Image();
                 img.onload = function(){
                     ctx.drawImage(img, 0, 0, 500, 500);
-	                let canvas_cell = document.getElementById(canvas_id + "_cell");
-					let canvas = document.getElementById(canvas_id);
-					let big_img = new Image();
-					big_img.src = canvas.toDataURL("image/png");
-					canvas_cell.removeChild(canvas_cell.lastChild);
-					big_img.classList.add("responsive-img");
-					canvas_cell.appendChild(big_img);
-					canvas_cell.addEventListener("mouseover", function(){
-						big_img.classList.add("circle");
-					});
-					canvas_cell.addEventListener("mouseout", function(){
-						big_img.classList.remove("circle");
-					});
+                    let canvas_cell = document.getElementById(canvas_id + "_cell");
+                    let canvas = document.getElementById(canvas_id);
+                    let big_img = new Image();
+                    big_img.src = canvas.toDataURL("image/png");
+                    canvas_cell.removeChild(canvas_cell.lastChild);
+                    big_img.classList.add("responsive-img");
+                    canvas_cell.appendChild(big_img);
+                    canvas_cell.addEventListener("mouseover", function(){
+                        big_img.classList.add("circle");
+                    });
+                    canvas_cell.addEventListener("mouseout", function(){
+                        big_img.classList.remove("circle");
+                    });
                 };
                 img.src = img_src;
-			}
+            }
 
-			function add_item(file_id, title) {
-				let html_code = "<div class='row'>\
-				<div class='col s2 m3 l4'></div>\
-				<div class='col s8 m6 l4' id='" + file_id + "_cell'><canvas id='" + file_id + "' class='responsive-img' width='500px' height='500px'></canvas></div>\
-				<div class='col s2 m3 l4'></div>\
-				<div class='col s12 center-align'>" + title + "</div>\
-				</div>";
-				let cont = document.getElementById("container");
-				cont.insertAdjacentHTML("beforeend", html_code);
-				draw(file_id, "avt/" + file_id + ".png");
+            function add_item(file_id, title) {
+                let html_code = "<div class='row'>\
+                <div class='col s2 m3 l4'></div>\
+                <div class='col s8 m6 l4' id='" + file_id + "_cell'><canvas id='" + file_id + "' class='responsive-img' width='500px' height='500px'></canvas></div>\
+                <div class='col s2 m3 l4'></div>\
+                <div class='col s12 center-align'>" + title + "</div>\
+                </div>";
+                let cont = document.getElementById("container");
+                cont.insertAdjacentHTML("beforeend", html_code);
+                draw(file_id, "avt/" + file_id + ".png");
 
-			}
+            }
 
-			function init() {
-				avts.forEach(function(item){
-					add_item(item[0], item[1]);
-				});
-			}
-		</script>
-	</head>
+            function init() {
+                avts.forEach(function(item){
+                    add_item(item[0], item[1]);
+                });
+            }
+        </script>
+    </head>
 
-	<body onload="init();">
-		<div class="container" id="container">
-			<div class="row">
-				<div class="col s12 center-align">
-					<h3>Avatar Gallery</h3>
-					<a class="github-button" href="https://github.com/chenyuheng/avatar-gallery" data-size="large" aria-label="View chenyuheng/avatar-gallery on GitHub">View on GitHub</a>
-				</div>
-			</div>
-		</div>
-    	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      	<script type="text/javascript" src="js/materialize.min.js"></script>
-		<script async defer src="https://buttons.github.io/buttons.js"></script>
-	</body>
+    <body onload="init();">
+        <div class="container" id="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <h3>Avatar Gallery</h3>
+                    <a class="github-button" href="https://github.com/chenyuheng/avatar-gallery" data-size="large" aria-label="View chenyuheng/avatar-gallery on GitHub">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+          <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+    </body>
 </html>
